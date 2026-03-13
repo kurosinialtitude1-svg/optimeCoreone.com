@@ -6,9 +6,16 @@ import { ShieldCheck } from 'lucide-react'
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="relative py-24 lg:py-40 bg-black overflow-hidden font-['Cinzel']">
-      {/* Background Tech Decor */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none tech-grid-bg" />
+    <section id="testimonials" className="relative py-24 lg:py-40 bg-[#F2F1F0] overflow-hidden font-['Cinzel']">
+      {/* Background Industrial Image */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.1] grayscale"
+          style={{ backgroundImage: 'url("/images/industrial-mesh.png")' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F2F1F0] via-transparent to-[#F2F1F0]" />
+        <div className="absolute inset-0 opacity-[0.05] tech-grid-bg" />
+      </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -17,9 +24,9 @@ export function TestimonialsSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.4em] uppercase text-[#3F7373] mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#3F7373]/20 text-[11px] font-black tracking-[0.5em] uppercase text-[#3F7373] mb-8 shadow-sm"
           >
-            <ShieldCheck className="w-3 h-3" />
+            <ShieldCheck className="w-4 h-4" />
             <span>Industrial Validation</span>
           </motion.div>
           
@@ -28,10 +35,10 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter"
+            className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-8 uppercase tracking-tighter"
           >
             Trusted by <span className="text-[#A8BDBF]">Leading</span> <br /> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] to-[#768C45]">Manufacturers</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">Manufacturers</span>
           </motion.h2>
           
           <motion.p
@@ -39,9 +46,9 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[#C5D7D9]/60 text-lg md:text-xl max-w-2xl mx-auto font-sans italic"
+            className="text-neutral-600 text-xl md:text-2xl max-w-3xl mx-auto font-sans italic italic-leading-relaxed"
           >
-            "Hear from industry leaders transforming their operations with Smart Factory Intelligence."
+            "Hear from industry leaders transforming their operations with OptimeCore Intelligence."
           </motion.p>
         </div>
 
@@ -61,10 +68,10 @@ export function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex flex-wrap items-center justify-center gap-12 mt-20 opacity-30 grayscale hover:grayscale-0 transition-all duration-700"
+          className="flex flex-wrap items-center justify-center gap-16 mt-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700"
         >
           {['SIEMENS PARTNER', 'ISO 27001', 'AWS INDUSTRIAL', 'SOC 2 COMPLIANT'].map((badge) => (
-            <div key={badge} className="text-[10px] font-black tracking-[0.5em] text-[#C5D7D9] border-b border-[#3F7373]/30 pb-2">
+            <div key={badge} className="text-[11px] font-black tracking-[0.6em] text-[#3F7373] border-b-2 border-[#3F7373]/10 pb-3">
               {badge}
             </div>
           ))}

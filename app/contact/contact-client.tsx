@@ -7,6 +7,8 @@ import {
   Terminal, Mail, Phone, MapPin, ArrowRight, Factory,
   Clock, Shield, Zap, Send, CheckCircle2
 } from 'lucide-react'
+import { Navbar } from '@/components/navbar'
+import { InnerPageFooter } from '@/components/inner-page-layout'
 
 const contactChannels = [
   {
@@ -59,32 +61,18 @@ export default function ContactClient() {
   }
 
   return (
-    <main className="min-h-screen bg-black font-['Cinzel'] overflow-x-hidden">
-      {/* Navbar Back Link */}
-      <div className="fixed top-6 left-6 z-50">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 text-[10px] font-bold tracking-[0.3em] uppercase text-[#A8BDBF]/60 hover:text-[#F2F1F0] transition-colors"
-        >
-          <ArrowRight className="w-3 h-3 rotate-180" /> Back to Platform
-        </Link>
+    <>
+      <Navbar />
+      <main className="min-h-screen dynamic-mesh-bg font-['Cinzel'] overflow-x-hidden pt-32 pb-24">
+
+      {/* Floating Orbs (Subtle palette accents for light mode) */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute w-[800px] h-[800px] rounded-full opacity-[0.08] bg-[#A8BDBF] -top-96 -left-96 blur-[150px]" />
+        <div className="absolute w-[600px] h-[600px] rounded-full opacity-[0.06] bg-[#768C45] -bottom-48 -right-48 blur-[120px]" />
+        <div className="absolute inset-0 opacity-[0.04] tech-grid-bg" />
       </div>
 
-      {/* Background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute w-[700px] h-[700px] rounded-full blur-[180px] opacity-[0.06] bg-[#3F7373] -top-32 -left-32" />
-        <div className="absolute w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.05] bg-[#768C45] bottom-0 right-0" />
-        <div className="absolute w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.04] bg-[#A8BDBF] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-            backgroundSize: '20px 20px',
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-20">
@@ -102,10 +90,10 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6"
+            className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6 text-[#1A1A1A]"
           >
-            <span className="text-[#F2F1F0]">Get in</span>{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#A8BDBF] to-[#768C45]">
+            Get in{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">
               Touch
             </span>
           </motion.h1>
@@ -114,7 +102,7 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[#A8BDBF]/60 text-lg max-w-xl mx-auto font-sans italic"
+            className="text-neutral-600 text-lg max-w-xl mx-auto font-sans italic font-medium"
           >
             "Our team of industrial AI specialists is ready to help you transform your factory operations."
           </motion.p>
@@ -129,29 +117,22 @@ export default function ContactClient() {
             transition={{ duration: 0.8 }}
           >
             {!submitted ? (
-              <div className="relative border border-white/5 bg-white/[0.02] p-8 md:p-12 overflow-hidden">
-                {/* Accent corner */}
-                <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-1 bg-gradient-to-l from-[#3F7373] to-transparent rotate-45 origin-right" />
-                </div>
-                {/* Left accent bar */}
-                <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#3F7373] via-[#A8BDBF] to-[#768C45]" />
-
-                <h2 className="text-2xl font-black text-[#F2F1F0] uppercase tracking-tight mb-2">
+              <div className="glass-panel tech-border-glow p-8 md:p-12 overflow-hidden shadow-2xl shadow-[#3F7373]/10">
+                <h2 className="text-3xl font-black text-[#1A1A1A] uppercase tracking-tight mb-2">
                   Send a Message
                 </h2>
-                <p className="text-[#A8BDBF]/40 text-xs font-sans tracking-widest uppercase mb-8">
-                  We respond within 4 business hours
+                <p className="text-[#3F7373]/60 text-[10px] font-black tracking-[0.4em] uppercase mb-10">
+                  Response Window: 4 Business Hours
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {[
                       { name: 'name', label: 'Full Name', placeholder: 'Michael Chen', type: 'text' },
                       { name: 'company', label: 'Company', placeholder: 'Precision Electronics Corp', type: 'text' },
                     ].map(field => (
                       <div key={field.name}>
-                        <label className="block text-[9px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]/50 mb-2">
+                        <label className="block text-[10px] font-black tracking-[0.4em] uppercase text-[#3F7373]/50 mb-3">
                           {field.label}
                         </label>
                         <input
@@ -160,14 +141,14 @@ export default function ContactClient() {
                           placeholder={field.placeholder}
                           required
                           onChange={handleChange}
-                          className="w-full bg-white/[0.04] border border-white/10 text-[#F2F1F0] placeholder:text-white/20 px-4 py-3 text-sm font-sans focus:outline-none focus:border-[#3F7373]/50 focus:bg-[#3F7373]/5 transition-all"
+                          className="w-full bg-white/40 border border-[#3F7373]/10 text-[#1A1A1A] placeholder:text-neutral-400 px-5 py-4 text-sm font-sans focus:outline-none focus:border-[#3F7373] focus:bg-white/80 transition-all rounded-xl"
                         />
                       </div>
                     ))}
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]/50 mb-2">
+                    <label className="block text-[10px] font-black tracking-[0.4em] uppercase text-[#3F7373]/50 mb-3">
                       Work Email
                     </label>
                     <input
@@ -176,32 +157,32 @@ export default function ContactClient() {
                       placeholder="operations@yourfactory.com"
                       required
                       onChange={handleChange}
-                      className="w-full bg-white/[0.04] border border-white/10 text-[#F2F1F0] placeholder:text-white/20 px-4 py-3 text-sm font-sans focus:outline-none focus:border-[#3F7373]/50 focus:bg-[#3F7373]/5 transition-all"
+                      className="w-full bg-white/40 border border-[#3F7373]/10 text-[#1A1A1A] placeholder:text-neutral-400 px-5 py-4 text-sm font-sans focus:outline-none focus:border-[#3F7373] focus:bg-white/80 transition-all rounded-xl"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]/50 mb-2">
+                    <label className="block text-[10px] font-black tracking-[0.4em] uppercase text-[#3F7373]/50 mb-3">
                       Reason for Contact
                     </label>
                     <select
                       name="reason"
                       required
                       onChange={handleChange}
-                      className="w-full bg-white/[0.04] border border-white/10 text-[#F2F1F0] px-4 py-3 text-sm font-sans focus:outline-none focus:border-[#3F7373]/50 transition-all appearance-none"
+                      className="w-full bg-white/40 border border-[#3F7373]/10 text-[#1A1A1A] px-5 py-4 text-sm font-sans focus:outline-none focus:border-[#3F7373] focus:bg-white/80 transition-all appearance-none rounded-xl"
                     >
-                      <option value="" className="bg-black">Select a reason...</option>
-                      <option value="demo" className="bg-black">Request a Demo</option>
-                      <option value="integration" className="bg-black">Custom Integration</option>
-                      <option value="security" className="bg-black">Security / Compliance</option>
-                      <option value="pricing" className="bg-black">Pricing & Plans</option>
-                      <option value="support" className="bg-black">Technical Support</option>
-                      <option value="other" className="bg-black">Other</option>
+                      <option value="">Select a reason...</option>
+                      <option value="demo">Request a Demo</option>
+                      <option value="integration">Custom Integration</option>
+                      <option value="security">Security / Compliance</option>
+                      <option value="pricing">Pricing & Plans</option>
+                      <option value="support">Technical Support</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-[9px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]/50 mb-2">
+                    <label className="block text-[10px] font-black tracking-[0.4em] uppercase text-[#3F7373]/50 mb-3">
                       Message
                     </label>
                     <textarea
@@ -210,15 +191,15 @@ export default function ContactClient() {
                       placeholder="Tell us about your factory, current challenges, and what you're looking to achieve..."
                       required
                       onChange={handleChange}
-                      className="w-full bg-white/[0.04] border border-white/10 text-[#F2F1F0] placeholder:text-white/20 px-4 py-3 text-sm font-sans focus:outline-none focus:border-[#3F7373]/50 focus:bg-[#3F7373]/5 transition-all resize-none"
+                      className="w-full bg-white/40 border border-[#3F7373]/10 text-[#1A1A1A] placeholder:text-neutral-400 px-5 py-4 text-sm font-sans focus:outline-none focus:border-[#3F7373] focus:bg-white/80 transition-all resize-none rounded-2xl"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-5 flex items-center justify-center gap-3 bg-gradient-to-r from-[#3F7373] to-[#768C45] text-white text-xs font-black tracking-[0.4em] uppercase hover:opacity-90 hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(63,115,115,0.3)]"
+                    className="w-full py-6 flex items-center justify-center gap-4 bg-[#3F7373] text-white text-[11px] font-black tracking-[0.4em] uppercase hover:bg-[#768C45] industrial-pulse transition-all shadow-2xl shadow-[#3F7373]/20 rounded-2xl"
                   >
-                    <Send className="w-4 h-4" /> Send to Command Center
+                    <Send className="w-5 h-5" /> Send to Command Center
                   </button>
                 </form>
               </div>
@@ -226,18 +207,17 @@ export default function ContactClient() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="relative border border-[#768C45]/30 bg-[#768C45]/5 p-12 flex flex-col items-center text-center h-full justify-center gap-6 overflow-hidden"
+                className="glass-panel border-[#768C45]/30 p-12 flex flex-col items-center text-center h-full justify-center gap-8 overflow-hidden"
               >
-                <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#768C45] to-[#3F7373]" />
-                <div className="w-20 h-20 rounded-full bg-[#768C45]/10 flex items-center justify-center border border-[#768C45]/30 shadow-[0_0_30px_rgba(118,140,69,0.2)]">
-                  <CheckCircle2 className="w-10 h-10 text-[#768C45]" />
+                <div className="w-24 h-24 rounded-full bg-[#768C45]/10 flex items-center justify-center border border-[#768C45]/30 shadow-[0_0_50px_rgba(118,140,69,0.2)]">
+                  <CheckCircle2 className="w-12 h-12 text-[#768C45]" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-[#F2F1F0] uppercase tracking-tight mb-3">
+                  <h3 className="text-3xl font-black text-[#1A1A1A] uppercase tracking-tight mb-4">
                     Message Received
                   </h3>
-                  <p className="text-[#A8BDBF]/60 font-sans text-sm leading-relaxed">
-                    Thank you! Our team will get back to you within 4 business hours. Keep an eye on <span className="text-[#A8BDBF]">{form.email}</span>.
+                  <p className="text-neutral-600 font-sans text-base leading-relaxed font-medium">
+                    Protocol initiated. Our team will get back to you within 4 business hours. Verification sent to <span className="text-[#3F7373] font-bold">{form.email}</span>.
                   </p>
                 </div>
                 <button
@@ -265,44 +245,42 @@ export default function ContactClient() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + i * 0.07 }}
-                  className="relative p-6 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden group"
+                  className="glass-panel tech-border-glow p-8 group transition-all duration-500 overflow-hidden"
                 >
-                  <div className="absolute left-0 top-0 w-0.5 h-full transition-all duration-300" style={{ background: ch.color }} />
-                  <div className="w-9 h-9 flex items-center justify-center border mb-4 transition-all duration-300 group-hover:shadow-lg"
-                    style={{ borderColor: ch.color + '30', background: ch.color + '10' }}>
-                    <ch.icon className="w-4 h-4" style={{ color: ch.color }} />
+                  <div className="w-12 h-12 flex items-center justify-center border-2 mb-6 rounded-2xl transition-all duration-300 group-hover:shadow-lg"
+                    style={{ borderColor: ch.color + '40', background: ch.color + '10' }}>
+                    <ch.icon className="w-5 h-5" style={{ color: ch.color }} />
                   </div>
-                  <p className="text-[9px] font-black tracking-[0.4em] uppercase mb-1" style={{ color: ch.color }}>
+                  <p className="text-[10px] font-black tracking-[0.5em] uppercase mb-2" style={{ color: ch.color }}>
                     {ch.label}
                   </p>
-                  <p className="text-[#F2F1F0] font-bold text-sm">{ch.value}</p>
-                  <p className="text-[#A8BDBF]/40 text-xs font-sans mt-1">{ch.sub}</p>
+                  <p className="text-[#1A1A1A] font-black text-lg tracking-tight">{ch.value}</p>
+                  <p className="text-neutral-500 text-xs font-sans mt-2 font-medium">{ch.sub}</p>
                 </motion.div>
               ))}
             </div>
 
             {/* Common Reasons */}
-            <div className="border border-white/5 bg-white/[0.02] p-8 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#3F7373]/30 to-transparent" />
-              <h3 className="text-[10px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]/40 mb-6">
+            <div className="glass-panel tech-border-glow p-10 relative overflow-hidden">
+              <h3 className="text-[11px] font-black tracking-[0.5em] uppercase text-[#3F7373]/40 mb-8 underline decoration-[#3F7373]/20 underline-offset-8">
                 Common Inquiries
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {reasons.map((r, i) => (
                   <motion.div
                     key={r.label}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 + i * 0.1 }}
-                    className="flex items-start gap-4 group cursor-pointer"
+                    className="flex items-start gap-5 group cursor-pointer"
                   >
-                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center border transition-all duration-300 group-hover:shadow-md"
+                    <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border-2 transition-all duration-300 group-hover:shadow-md rounded-xl"
                       style={{ borderColor: r.color + '30', background: r.color + '10' }}>
-                      <r.icon className="w-4 h-4 transition-all duration-300" style={{ color: r.color }} />
+                      <r.icon className="w-5 h-5 transition-all duration-300" style={{ color: r.color }} />
                     </div>
                     <div>
-                      <p className="text-[#F2F1F0] font-bold text-sm tracking-wide uppercase">{r.label}</p>
-                      <p className="text-[#A8BDBF]/40 text-xs font-sans mt-0.5">{r.desc}</p>
+                      <p className="text-[#1A1A1A] font-black text-base tracking-tight uppercase leading-none mb-1">{r.label}</p>
+                      <p className="text-neutral-500 text-xs font-sans font-medium">{r.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -310,14 +288,14 @@ export default function ContactClient() {
             </div>
 
             {/* Status Bar */}
-            <div className="flex items-center justify-between px-6 py-4 border border-white/5 bg-white/[0.02]">
+            <div className="flex items-center justify-between px-8 py-5 glass-panel border-[#3F7373]/10">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-[#768C45] animate-pulse" />
-                <p className="text-[9px] font-bold tracking-[0.4em] uppercase text-[#A8BDBF]/30 font-sans">
-                  All Support Channels Online
+                <div className="w-2.5 h-2.5 rounded-full bg-[#768C45] animate-pulse shadow-[0_0_10px_rgba(118,140,69,0.5)]" />
+                <p className="text-[10px] font-black tracking-[0.5em] uppercase text-[#3F7373] font-sans">
+                  Support Channels: ONLINE
                 </p>
               </div>
-              <p className="text-[9px] font-bold tracking-[0.3em] text-[#A8BDBF]/20 uppercase font-sans">
+              <p className="text-[10px] font-black tracking-[0.3em] text-neutral-400 uppercase font-sans">
                 16:51 UTC+5:30
               </p>
             </div>
@@ -325,5 +303,7 @@ export default function ContactClient() {
         </div>
       </div>
     </main>
+    <InnerPageFooter />
+    </>
   )
 }

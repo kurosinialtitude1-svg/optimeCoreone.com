@@ -1,63 +1,105 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Factory } from 'lucide-react'
+import {
+  ArrowRight,
+  Factory,
+  Zap,
+  Shield,
+  Lock,
+  MessageSquare
+} from 'lucide-react'
 import { StackedCircularFooter } from '@/components/ui/stacked-circular-footer'
 
 export function CTAFooterSection() {
-  const footerLinks = [
-    {
-      heading: 'Product',
-      color: '#3F7373',  // Ming
-      links: ['Features', 'Pricing', 'How It Works', 'Demo', 'Changelog'],
-      hrefs: ['#features', '#pricing', '#how-it-works', '#', '#'],
-    },
-    {
-      heading: 'Company',
-      color: '#768C45',  // Palm Leaf
-      links: ['About', 'Blog', 'Careers', 'Contact', 'Partners'],
-      hrefs: ['#', '#', '#', '#', '#'],
-    },
-    {
-      heading: 'Resources',
-      color: '#A8BDBF',  // Opal
-      links: ['Documentation', 'API Reference', 'Case Studies', 'Webinars', 'Community'],
-      hrefs: ['#', '#', '#', '#', '#'],
-    },
-    {
-      heading: 'Legal',
-      color: '#C5D7D9',  // Columbia Blue
-      links: ['Privacy Policy', 'Terms of Use', 'Security', 'Compliance', 'Cookie Policy'],
-      hrefs: ['/privacy-policy', '/terms-and-conditions', '#', '#', '#'],
-    },
-  ]
+  const orbs = [
+    { type: 'stat', label: '+40% Output', icon: Factory, color: '#3F7373', top: '10%', left: '15%', delay: 0 },
+    { type: 'portrait', img: '/user1.png', top: '15%', right: '20%', delay: 1, size: '80px' },
+    { type: 'icon', icon: Zap, color: '#768C45', bottom: '20%', left: '20%', delay: 0.5 },
+    { type: 'stat', label: '99.9% Uptime', icon: Shield, color: '#3F7373', bottom: '15%', right: '25%', delay: 1.5 },
+    { type: 'portrait', img: '/user2.png', top: '40%', left: '5%', delay: 2, size: '70px' },
+    { type: 'portrait', img: '/user3.png', bottom: '40%', right: '5%', delay: 0.8, size: '90px' },
+    { type: 'icon', icon: MessageSquare, color: '#768C45', top: '30%', right: '10%', delay: 1.2 },
+  ];
 
   return (
     <>
-      {/* ── Final CTA Section ── */}
-      <section className="relative py-32 lg:py-48 bg-black overflow-hidden font-['Cinzel']">
-        {/* Animated Color Blob Background */}
-        <div className="dark-animated-mix absolute inset-0">
-          <div className="dark-animated-mix-blob" />
-          <div className="dark-animated-mix-glow" />
+      {/* ── Final CTA Section (Refined Light Theme) ── */}
+      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#F2F1F0] overflow-hidden font-['Cinzel']">
+        {/* Industrial Background Image - High Visibility */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/footer-bg.png" 
+            alt="Industrial Background" 
+            className="w-full h-full object-cover opacity-60 scale-105"
+          />
+          {/* Subtle Light Gradients for Depth & Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F2F1F0]/90 via-transparent to-[#F2F1F0]/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(63,115,115,0.1)_0%,_transparent_70%)]" />
         </div>
-        
-        {/* Extra blobs for color richness */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute w-[500px] h-[500px] rounded-full blur-[120px] opacity-20 bg-[#C5D7D9] -top-24 -right-24 animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute w-[300px] h-[300px] rounded-full blur-[100px] opacity-15 bg-[#768C45] bottom-0 left-1/3" />
+
+        {/* Floating Orbs Container */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          {orbs.map((orb, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+              }}
+              transition={{
+                y: { duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: orb.delay },
+                x: { duration: 5 + i, repeat: Infinity, ease: "easeInOut", delay: orb.delay },
+                opacity: { duration: 1, delay: i * 0.1 },
+                scale: { duration: 1, delay: i * 0.1 },
+              }}
+              className="absolute pointer-events-auto"
+              style={{
+                top: orb.top,
+                left: orb.left,
+                right: orb.right,
+                bottom: orb.bottom,
+                width: orb.size || 'auto'
+              }}
+            >
+              {orb.type === 'stat' && (
+                <div className="flex flex-col items-center gap-1 bg-white/80 backdrop-blur-xl border border-white p-4 rounded-3xl shadow-[0_20px_40px_-15px_rgba(63,115,115,0.15)]">
+                  {orb.icon && <orb.icon className="w-4 h-4" style={{ color: orb.color }} />}
+                  <span className="text-[10px] font-bold text-[#1A1A1A] tracking-tighter uppercase whitespace-nowrap">{orb.label}</span>
+                </div>
+              )}
+              {orb.type === 'portrait' && (
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#3F7373] to-[#768C45] rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
+                  <img
+                    src={orb.img}
+                    className="relative rounded-full border-4 border-white shadow-2xl hover:scale-110 transition-all duration-500 cursor-pointer object-cover"
+                    style={{ width: orb.size, height: orb.size }}
+                    alt="User"
+                  />
+                </div>
+              )}
+              {orb.type === 'icon' && (
+                <div className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-xl border border-white rounded-2xl shadow-lg">
+                  {orb.icon && <orb.icon className="w-5 h-5" style={{ color: orb.color }} />}
+                </div>
+              )}
+            </motion.div>
+          ))}
         </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Badge */}
+
+        {/* Central Content */}
+        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.5em] uppercase mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-[#3F7373]/20 text-[11px] font-black tracking-[0.5em] uppercase mb-10 shadow-sm"
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#768C45] animate-pulse" />
-            <span className="text-[#A8BDBF]">System Online — Accepting Enrollments</span>
+            <div className="w-2 h-2 rounded-full bg-[#768C45] animate-pulse shadow-[0_0_10px_#768C45]" />
+            <span className="text-[#3F7373]">System Online — Accepting Enrollments</span>
           </motion.div>
 
           <motion.h2
@@ -65,15 +107,15 @@ export function CTAFooterSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-12 drop-shadow-sm"
           >
-            <span className="text-[#F2F1F0]">Optimize</span>
+            <span className="text-[#1A1A1A]">Optimize</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A8BDBF] via-[#3F7373] to-[#768C45]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">
               Your Factory
             </span>
             <br />
-            <span className="text-[#C5D7D9]">Today.</span>
+            <span className="text-[#3F7373]">Today.</span>
           </motion.h2>
 
           <motion.p
@@ -81,54 +123,37 @@ export function CTAFooterSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-[#A8BDBF]/70 text-lg max-w-2xl mx-auto mb-12 font-sans italic leading-relaxed"
+            className="text-neutral-600 text-xl max-w-2xl mx-auto mb-16 font-sans font-medium italic leading-relaxed"
           >
-            "Join manufacturing companies worldwide using OptimeCore to monitor production workflows, optimize machine utilization, and streamline maintenance planning. Start your free 14-day trial."
+            "Experience OptiCoreX — monitor workflows, optimize machines, and streamline maintenance. Get started with your 14-day free trial now!"
           </motion.p>
 
-          {/* Email Capture CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="flex flex-col sm:flex-row gap-0 justify-center max-w-lg mx-auto mb-6 overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-md p-1"
+            className="flex flex-col items-center gap-8"
           >
-            <input
-              type="email"
-              placeholder="Enter your factory email..."
-              className="flex-1 px-6 py-4 bg-transparent text-[#F2F1F0] placeholder:text-[#A8BDBF]/40 focus:outline-none text-sm font-sans"
-            />
-            <button className="px-8 py-4 mixed-gradient-glow rounded-full text-white text-xs font-black tracking-widest uppercase whitespace-nowrap flex items-center gap-2 justify-center hover:scale-105 transition-transform">
-              Start Trial <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
-
-          {/* Stat Row */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-10 mt-16 pt-10 border-t border-white/5"
-          >
-            {[
-              { val: '500+', label: 'Factories Enrolled', color: '#3F7373' },
-              { val: '99.9%', label: 'Platform Uptime', color: '#768C45' },
-              { val: '40%', label: 'Downtime Reduction', color: '#A8BDBF' },
-              { val: '14 Days', label: 'Free Trial', color: '#C5D7D9' },
-            ].map((stat) => (
-              <div key={stat.val} className="text-center">
-                <p className="text-3xl font-black tracking-tighter" style={{ color: stat.color }}>{stat.val}</p>
-                <p className="text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase mt-1">{stat.label}</p>
-              </div>
-            ))}
+            <div className="flex flex-col sm:flex-row gap-0 justify-center w-full max-w-xl overflow-hidden rounded-full border border-[#3F7373]/20 bg-white/90 backdrop-blur-lg shadow-[0_30px_60px_-15px_rgba(63,115,115,0.2)] p-1.5 transition-all focus-within:ring-2 ring-[#3F7373]/20">
+              <input
+                type="email"
+                placeholder="Enter your factory email..."
+                className="flex-1 px-8 py-5 bg-transparent text-[#1A1A1A] placeholder:text-neutral-400 focus:outline-none text-base font-sans"
+              />
+              <button className="px-10 py-5 bg-[#3F7373] hover:bg-[#3F7373]/90 rounded-full text-white text-sm font-black tracking-widest uppercase whitespace-nowrap flex items-center gap-3 justify-center hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-[#3F7373]/30">
+                Start Trial <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+            <a href="#how-it-works" className="text-[11px] font-black tracking-[0.4em] uppercase text-neutral-400 hover:text-[#3F7373] transition-all border-b border-transparent hover:border-[#3F7373]/40 pb-1.5 mb-10">
+              How it works
+            </a>
           </motion.div>
         </div>
       </section>
 
       {/* ── Stacked Circular Footer ── */}
-      <div className="h-px w-full bg-gradient-to-r from-[#3F7373] via-[#A8BDBF] via-[#C5D7D9] via-[#768C45] to-[#3F7373]" />
+      <div className="h-px w-full bg-[#3F7373]/10" />
       <StackedCircularFooter />
     </>
   )

@@ -4,31 +4,42 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  /* Premium Dark Theme - Cinzel & Opal Palette */
-  --background: #000000;
-  --foreground: #F2F1F0; /* Anti-Flash White */
-  --card: #0a0a0a;
-  --card-foreground: #F2F1F0;
-  --popover: #0a0a0a;
-  --popover-foreground: #F2F1F0;
-  /* Primary Mixing: Opal & Ming */
+  /* Premium Light Theme - Industrial Palette */
+  --background: #F2F1F0; /* Anti-Flash White */
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  
+  /* Palette Implementation */
   --primary: #3F7373; /* Ming */
   --primary-foreground: #F2F1F0;
-  /* Secondary Mixing: Palm Leaf & Columbia Blue */
+  
   --secondary: #768C45; /* Palm Leaf */
   --secondary-foreground: #F2F1F0;
-  --muted: #111827;
-  --muted-foreground: #A8BDBF; /* Opal */
-  /* Accent: Mixed Palette Blend */
-  --accent: #A8BDBF; /* Opal */
-  --accent-foreground: #000000;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #F2F1F0;
-  --border: #1f2937;
-  --input: #0a0a0a;
+  
+  --muted: #E8F3F5; /* Light Columbia Blue tint */
+  --muted-foreground: #3F7373; /* Ming */
+  
+  --accent: #C5D7D9; /* Columbia Blue */
+  --accent-foreground: #1A1A1A;
+  
+  --opal: #A8BDBF;
+  --columbia-blue: #C5D7D9;
+  --ming: #3F7373;
+  --palm-leaf: #768C45;
+  --anti-flash-white: #F2F1F0;
+
+  --border: rgba(63, 115, 115, 0.15);
+  --input: #FFFFFF;
   --ring: #3F7373;
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 @theme inline {
@@ -81,7 +92,7 @@
   background: 
     radial-gradient(at 0% 0%, rgba(168, 189, 191, 0.15) 0%, transparent 50%),
     radial-gradient(at 100% 100%, rgba(118, 140, 69, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, #F2F1F0 0%, #E2E8F0 50%, #C5D7D9 100%);
+    linear-gradient(135deg, #F2F1F0 0%, #C5D7D9 100%);
   position: relative;
   overflow: hidden;
 }
@@ -90,6 +101,70 @@
   background: #000000;
   position: relative;
   overflow: hidden;
+}
+
+/* ── Creative Visual Tokens ── */
+
+.glass-panel {
+  background: rgba(197, 215, 217, 0.1);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(63, 115, 115, 0.2);
+  border-radius: var(--radius);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.07),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.industrial-pulse {
+  animation: industrial-pulse 4s ease-in-out infinite;
+}
+
+@keyframes industrial-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(63, 115, 115, 0.4); 
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px 10px rgba(118, 140, 69, 0.2); 
+    transform: scale(1.02);
+  }
+}
+
+.dynamic-mesh-bg {
+  background-color: #F2F1F0;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(168, 189, 191, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(197, 215, 217, 0.3) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(63, 115, 115, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(118, 140, 69, 0.1) 0px, transparent 50%);
+  position: relative;
+}
+
+.tech-border-glow {
+  position: relative;
+  border: 1px solid rgba(63, 115, 115, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tech-border-glow:hover {
+  border-color: #3F7373;
+  box-shadow: 0 0 15px rgba(63, 115, 115, 0.3);
+}
+
+.tech-border-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, #3F7373, #768C45, #3F7373);
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-border-glow:hover::after {
+  opacity: 0.15;
 }
 
 .dark-animated-mix::before,
@@ -125,7 +200,7 @@
 .dark-animated-mix-blob {
   width: 30%;
   height: 30%;
-  background: #A8BDBF; /* Opal */
+  background: #C5D7D9; /* Columbia Blue */
   top: 40%;
   left: 50%;
   animation: float-middle 18s ease-in-out infinite;

@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 const faqs = [
   {
     id: 0,
-    question: 'How do I integrate Smart Factory with my existing machines?',
-    answer: 'Smart Factory supports integration with most industrial equipment through IoT sensors, PLCs, and industry-standard protocols like OPC UA and MQTT. Our integration team will work with you to ensure seamless connectivity.',
+    question: 'How do I integrate OptimeCore with my existing machines?',
+    answer: 'OptimeCore supports integration with most industrial equipment through IoT sensors, PLCs, and industry-standard protocols like OPC UA and MQTT. Our integration team will work with you to ensure seamless connectivity.',
     tag: 'INTEGRATION',
   },
   {
@@ -36,24 +36,6 @@ const faqs = [
     answer: 'Starter plans include community support and documentation. Professional plans offer email support with 24-hour response times. Enterprise plans include dedicated account managers and 24/7 phone support.',
     tag: 'SUPPORT',
   },
-  {
-    id: 5,
-    question: 'Do you offer custom integrations?',
-    answer: 'Absolutely! Enterprise customers can access our API and professional services team for custom integrations with ERP, MES, and other business systems.',
-    tag: 'INTEGRATION',
-  },
-  {
-    id: 6,
-    question: 'What is your uptime guarantee?',
-    answer: 'Professional plans include 99.5% uptime SLA. Enterprise plans include 99.99% uptime SLA with redundancy and failover capabilities.',
-    tag: 'RELIABILITY',
-  },
-  {
-    id: 7,
-    question: 'Can I switch plans anytime?',
-    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the next billing cycle, and we prorate billing accordingly.',
-    tag: 'BILLING',
-  },
 ]
 
 export function FAQSection() {
@@ -62,17 +44,17 @@ export function FAQSection() {
   const toggle = (id: number) => setOpenId(openId === id ? null : id)
 
   return (
-    <section id="faq" className="relative py-24 lg:py-40 bg-black overflow-hidden font-['Cinzel']">
-      {/* Background Image */}
+    <section id="faq" className="relative py-24 lg:py-40 bg-[#E8F3F5] overflow-hidden font-['Cinzel']">
+      {/* Enhanced Background Visibility */}
       <div className="absolute inset-0 pointer-events-none">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.12] grayscale scale-105"
           style={{ backgroundImage: 'url("/images/faq-inquiry-bg.png")' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black" />
-        <div className="absolute inset-0 opacity-[0.04] tech-grid-bg tech-grid-anim" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E8F3F5]/95 via-transparent to-[#E8F3F5]/95" />
+        <div className="absolute inset-0 opacity-[0.03] tech-grid-bg" />
       </div>
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#3F7373]/40 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#3F7373]/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#768C45]/30 to-transparent" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -83,22 +65,22 @@ export function FAQSection() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.4em] uppercase text-[#3F7373] mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-[#3F7373]/20 text-[11px] font-black tracking-[0.5em] uppercase text-[#3F7373] mb-8 shadow-sm"
             >
-              <Terminal className="w-3 h-3" />
-              <span>sys.inquiry.terminal</span>
+              <Terminal className="w-3.5 h-3.5" />
+              <span>Inquiry Terminal</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none"
+              className="text-5xl md:text-7xl font-black text-[#1A1A1A] uppercase tracking-tighter leading-tight"
             >
-              Frequently
+              Questions?
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] to-[#768C45]">
-                Asked
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">
+                OptiCoreX Has Answers.
               </span>
             </motion.h2>
           </div>
@@ -107,14 +89,14 @@ export function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[#A8BDBF]/60 text-sm md:text-base max-w-xs lg:text-right font-sans leading-relaxed italic"
+            className="text-neutral-500 text-base md:text-lg max-w-xs lg:text-right font-sans leading-relaxed italic border-r-2 border-[#A8BDBF]/30 pr-6"
           >
-            "Everything you need to know about Smart Factory operations, security, and support."
+            "Everything you need to know about OptimeCore operations, security, and support."
           </motion.p>
         </div>
 
-        {/* FAQ Terminal Panels */}
-        <div className="space-y-3">
+        {/* FAQ Panels with Palette Colors */}
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openId === faq.id
             return (
@@ -128,57 +110,47 @@ export function FAQSection() {
                 <button
                   onClick={() => toggle(faq.id)}
                   className={cn(
-                    "group w-full text-left p-6 md:p-8 border transition-all duration-300 relative overflow-hidden",
+                    "group w-full text-left p-6 md:p-10 border transition-all duration-300 relative overflow-hidden rounded-[2.5rem]",
                     isOpen
-                      ? "bg-[#3F7373]/10 border-[#3F7373]/50"
-                      : "bg-white/[0.02] border-white/5 hover:border-white/10 hover:bg-white/[0.04]"
+                      ? "bg-white border-[#3F7373]/20 shadow-[0_25px_50px_-15px_rgba(63,115,115,0.15)]"
+                      : "bg-white/40 border-neutral-200 backdrop-blur-sm hover:border-[#3F7373]/30 hover:bg-white/80"
                   )}
                 >
-                  {/* Accent bar */}
-                  <div className={cn(
-                    "absolute left-0 top-0 w-1 h-full transition-all duration-300",
-                    isOpen
-                      ? "bg-gradient-to-b from-[#3F7373] to-[#768C45]"
-                      : "bg-transparent group-hover:bg-white/10"
-                  )} />
-
-                  <div className="flex items-start justify-between gap-6">
-                    <div className="flex items-start gap-6">
-                      {/* Sequence Number */}
+                  <div className="flex items-start justify-between gap-8">
+                    <div className="flex items-start gap-8">
+                      {/* Sequence Number using Palette */}
                       <div className={cn(
-                        "flex-shrink-0 w-10 h-10 flex items-center justify-center border text-[11px] font-black font-mono transition-all duration-300",
+                        "flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl border text-[13px] font-black font-mono transition-all duration-300",
                         isOpen
-                          ? "bg-[#3F7373] border-[#3F7373] text-white"
-                          : "bg-transparent border-white/10 text-neutral-600 group-hover:border-[#3F7373]/30 group-hover:text-[#A8BDBF]"
+                          ? "bg-[#3F7373] border-[#3F7373] text-[#F2F1F0] shadow-lg shadow-[#3F7373]/30"
+                          : "bg-transparent border-neutral-200 text-[#A8BDBF] group-hover:border-[#3F7373]/30 group-hover:text-[#3F7373]"
                       )}>
                         {String(faq.id + 1).padStart(2, '0')}
                       </div>
                       <div className="flex-1">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                        <div className="flex items-center gap-3 mb-2">
                           <span className={cn(
-                            "text-[9px] font-black tracking-[0.4em] border px-2 py-0.5 transition-all duration-300",
-                            isOpen
-                              ? "text-[#768C45] border-[#768C45]/30 bg-[#768C45]/10"
-                              : "text-neutral-700 border-neutral-800"
+                            "text-[10px] font-black tracking-[0.4em] uppercase transition-all duration-300",
+                            isOpen ? "text-[#768C45]" : "text-[#A8BDBF]"
                           )}>
                             {faq.tag}
                           </span>
                         </div>
                         <h3 className={cn(
-                          "text-base md:text-lg font-bold tracking-tight uppercase transition-colors duration-300",
-                          isOpen ? "text-white" : "text-neutral-400 group-hover:text-white"
+                          "text-lg md:text-xl font-bold tracking-tight uppercase transition-colors duration-300",
+                          isOpen ? "text-[#1A1A1A]" : "text-neutral-500 group-hover:text-[#1A1A1A]"
                         )}>
                           {faq.question}
                         </h3>
                       </div>
                     </div>
                     <div className={cn(
-                      "flex-shrink-0 w-8 h-8 flex items-center justify-center border transition-all duration-500",
+                      "flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-500",
                       isOpen
-                        ? "bg-[#3F7373] border-[#3F7373] rotate-45"
-                        : "bg-transparent border-white/10 group-hover:border-white/20"
+                        ? "bg-[#3F7373] border-[#3F7373] text-[#F2F1F0] rotate-45 shadow-md shadow-[#3F7373]/20"
+                        : "bg-white/50 border-neutral-200 text-neutral-400 group-hover:border-[#3F7373]/30 group-hover:text-[#3F7373]"
                     )}>
-                      <Plus className="w-4 h-4 text-white" />
+                      <Plus className="w-5 h-5" />
                     </div>
                   </div>
                 </button>
@@ -192,12 +164,10 @@ export function FAQSection() {
                       transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                       className="overflow-hidden"
                     >
-                      <div className="bg-[#3F7373]/5 border-l border-r border-b border-[#3F7373]/30 px-8 md:px-14 py-8">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 mt-1">
-                            <Zap className="w-4 h-4 text-[#768C45]" />
-                          </div>
-                          <p className="text-[#C5D7D9]/80 font-sans leading-relaxed text-sm md:text-base">
+                      <div className="px-10 md:px-32 py-8">
+                        <div className="flex items-start gap-6 border-l-4 border-[#C5D7D9] pl-8">
+                          <Zap className="w-5 h-5 text-[#768C45] mt-1 flex-shrink-0" />
+                          <p className="text-neutral-600 font-sans font-medium leading-relaxed text-base md:text-lg">
                             {faq.answer}
                           </p>
                         </div>
@@ -210,33 +180,33 @@ export function FAQSection() {
           })}
         </div>
 
-        {/* CTA Console Block */}
+        {/* CTA Support Block - Refined Palette */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-20 relative p-10 md:p-16 border border-white/5 bg-white/[0.02] overflow-hidden"
+          className="mt-28 relative p-12 md:p-20 bg-white border border-[#3F7373]/20 rounded-[4rem] overflow-hidden shadow-[0_48px_100px_-24px_rgba(63,115,115,0.2)]"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#3F7373]/10 to-[#768C45]/5 pointer-events-none" />
-          <div className="absolute top-0 left-0 w-64 h-64 bg-[#3F7373]/10 blur-[80px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute inset-0 bg-white pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#E8F3F5] via-white to-[#E8F3F5] opacity-50 pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 justify-between">
-            <div className="flex items-start gap-6">
-              <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-[#3F7373] shadow-[0_0_30px_rgba(63,115,115,0.4)]">
-                <MessageSquare className="w-7 h-7 text-white" />
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 justify-between">
+            <div className="flex items-start gap-8">
+              <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-[#3F7373] rounded-2xl shadow-2xl shadow-[#3F7373]/30">
+                <MessageSquare className="w-8 h-8 text-[#F2F1F0]" />
               </div>
               <div>
-                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-2">
-                  Still have questions?
+                <h3 className="text-3xl md:text-4xl font-black text-[#1A1A1A] uppercase tracking-tight mb-3">
+                  Still Have Questions?
                 </h3>
-                <p className="text-[#A8BDBF]/60 font-sans text-sm italic">
-                  Contact our specialists for a personalized consultation and live demo.
+                <p className="text-neutral-500 font-sans font-medium text-base italic max-w-lg">
+                  Our specialists are ready to guide you with a personalized consultation and live demo.
                 </p>
               </div>
             </div>
-            <button className="flex-shrink-0 mixed-gradient-glow px-10 py-5 rounded-full text-white text-xs font-black tracking-widest uppercase hover:scale-105 transition-transform flex items-center gap-3">
-              Schedule a Demo <ArrowRight className="w-4 h-4" />
+            <button className="flex-shrink-0 bg-[#3F7373] hover:bg-[#3F7373]/90 px-12 py-6 rounded-full text-[#F2F1F0] text-sm font-black tracking-[0.2em] uppercase hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl shadow-[#3F7373]/40 flex items-center gap-4">
+              Real-Time Operations — Take Control <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </motion.div>

@@ -16,11 +16,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
-  title: 'OptimeCore — GPU-Accelerated Smart Factory Efficiency Platform',
-  description: 'OptimeCore is an intelligent manufacturing platform that monitors production workflows, optimizes machine utilization, and streamlines maintenance planning using AI-powered analytics. Built for Industry 4.0.',
+  title: 'OptimeCore — GPU-Accelerated Industrial Intelligence Platform',
+  description: 'Optimize production workflows, monitor machine utilization, and streamline maintenance planning with OptimeCore\'s AI-powered factory intelligence.',
   generator: 'v0.app',
   openGraph: {
-    title: 'OptimeCore — Smart Factory Efficiency Platform',
+    title: 'OptimeCore — Industrial Intelligence Platform',
     description: 'Intelligent production optimization, machine performance monitoring, and operational analytics for modern manufacturing.',
     images: [{ url: '/og-image.png' }],
   },

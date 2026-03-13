@@ -9,10 +9,10 @@ const plans = [
   {
     id: 'starter',
     name: 'Starter',
-    icon: Box,
+    iconUrl: '/Starter icon.svg',
     monthlyPrice: 149,
     annualPrice: 1490,
-    description: 'Perfect for small operations',
+    description: 'Perfect for small operations entering Industry 4.0.',
     features: [
       'Up to 5 production lines',
       'Real-time monitoring',
@@ -23,14 +23,15 @@ const plans = [
     ],
     cta: 'Start Free Trial',
     serial: 'MOD-01-STR',
+    accent: '#A8BDBF',
   },
   {
     id: 'professional',
     name: 'Professional',
-    icon: Cpu,
+    iconUrl: '/Professional icon.svg',
     monthlyPrice: 399,
     annualPrice: 3990,
-    description: 'For growing manufacturers',
+    description: 'For growing manufacturers scaling OptimeCore intelligence.',
     features: [
       'Unlimited production lines',
       'AI-powered predictions',
@@ -44,14 +45,15 @@ const plans = [
     cta: 'Start Free Trial',
     serial: 'MOD-02-PRO',
     highlighted: true,
+    accent: '#3F7373',
   },
   {
     id: 'enterprise',
     name: 'Enterprise',
-    icon: Database,
+    iconUrl: '/Enterprise icon.svg',
     monthlyPrice: null,
     annualPrice: null,
-    description: 'Custom solutions for large enterprises',
+    description: 'Custom solutions for large-scale industrial enterprises.',
     features: [
       'Everything in Professional',
       'Dedicated account manager',
@@ -64,6 +66,7 @@ const plans = [
     ],
     cta: 'Contact Sales',
     serial: 'MOD-03-ENT',
+    accent: '#768C45',
   },
 ]
 
@@ -73,6 +76,8 @@ const comparisonData = [
   { feature: 'API Access', starter: '—', pro: '✓', ent: '✓' },
   { feature: 'On-Premise Option', starter: '—', pro: '—', ent: '✓' },
   { feature: 'Dedicated Support', starter: '—', pro: 'Email', ent: '24/7 Phone' },
+  { feature: 'Custom Logic', starter: '—', pro: '—', ent: '✓' },
+  { feature: 'SLA Guarantee', starter: '—', pro: '99.9%', ent: '99.99%' },
 ]
 
 export function PricingSection() {
@@ -85,15 +90,15 @@ export function PricingSection() {
   }
 
   return (
-    <section id="pricing" className="relative py-24 lg:py-36 bg-black overflow-hidden font-['Cinzel']">
-      {/* Background Elements & Custom Image */}
+    <section id="pricing" className="relative py-24 lg:py-36 bg-[#E5EFF1] overflow-hidden font-['Cinzel']">
+      {/* Background Elements & Custom Image - Enhanced Visibility */}
       <div className="absolute inset-0 pointer-events-none">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.12] scale-105 grayscale"
           style={{ backgroundImage: 'url("/images/industrial-pricing-bg.png")' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-black" />
-        <div className="absolute inset-0 opacity-10 tech-grid-bg tech-grid-anim" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E5EFF1] via-transparent to-[#E5EFF1]" />
+        <div className="absolute inset-0 opacity-[0.03] tech-grid-bg" />
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -103,52 +108,52 @@ export function PricingSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.4em] uppercase text-[#3F7373] mb-6"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#3F7373]/20 text-[11px] font-black tracking-[0.5em] uppercase text-[#3F7373] mb-8 shadow-sm"
           >
-            <Shield className="w-3 h-3" />
+            <Shield className="w-4 h-4" />
             <span>Resource Allocation Protocol</span>
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-black text-white leading-none tracking-tighter mb-6 uppercase"
+            className="text-5xl md:text-7xl font-black text-[#1A1A1A] leading-none tracking-tighter mb-8 uppercase"
           >
-            Transparent <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] to-[#768C45]">Pricing</span>
+            Transparent <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">Pricing</span>
           </motion.h2>
 
-          {/* Billing Switcher */}
-          <div className="flex items-center justify-center gap-6 mt-8">
+          {/* Billing Switcher - Refined for Light Theme */}
+          <div className="flex items-center justify-center gap-8 mt-10">
             <button 
               onClick={() => setIsAnnual(false)}
               className={cn(
-                "text-xs font-bold tracking-widest transition-all",
-                !isAnnual ? "text-white" : "text-neutral-600"
+                "text-xs font-black tracking-[0.2em] transition-all",
+                !isAnnual ? "text-[#3F7373]" : "text-neutral-400"
               )}
             >
               MONTHLY
             </button>
             <button
               onClick={() => setIsAnnual(!isAnnual)}
-              className="relative h-6 w-12 rounded-full bg-neutral-900 border border-white/10 p-1 transition-all group"
+              className="relative h-7 w-14 rounded-full bg-white border border-[#3F7373]/20 p-1 transition-all group shadow-inner"
             >
               <motion.div 
-                animate={{ x: isAnnual ? 24 : 0 }}
-                className="h-full aspect-square rounded-full bg-[#3F7373] shadow-[0_0_10px_rgba(63,115,115,0.5)]"
+                animate={{ x: isAnnual ? 28 : 0 }}
+                className="h-full aspect-square rounded-full bg-[#3F7373] shadow-lg shadow-[#3F7373]/30"
               />
             </button>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button 
                 onClick={() => setIsAnnual(true)}
                 className={cn(
-                  "text-xs font-bold tracking-widest transition-all",
-                  isAnnual ? "text-white" : "text-neutral-600"
+                  "text-xs font-black tracking-[0.2em] transition-all",
+                  isAnnual ? "text-[#3F7373]" : "text-neutral-400"
                 )}
               >
                 ANNUAL
               </button>
-              <span className="px-2 py-0.5 rounded-sm bg-[#768C45]/20 text-[#768C45] text-[10px] font-black border border-[#768C45]/30">
-                -17%
+              <span className="px-3 py-1 rounded-full bg-[#768C45] text-[#F2F1F0] text-[10px] font-black tracking-wider shadow-md shadow-[#768C45]/20">
+                -17% OFF
               </span>
             </div>
           </div>
@@ -157,47 +162,54 @@ export function PricingSection() {
         {/* Pricing Console Engine */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-32">
           
-          {/* Left: Selector Module */}
-          <div className="lg:col-span-4 space-y-4">
+          {/* Left: Selector Module - Refined Light Cards */}
+          <div className="lg:col-span-4 space-y-5">
             {plans.map((plan) => (
               <button
                 key={plan.id}
                 onClick={() => setActivePlan(plan)}
                 className={cn(
-                  "w-full text-left p-6 rounded-2xl border transition-all duration-500 group relative overflow-hidden",
+                  "w-full text-left p-8 rounded-[2rem] border transition-all duration-500 group relative overflow-hidden backdrop-blur-md",
                   activePlan.id === plan.id 
-                    ? "bg-white/5 border-white/20 shadow-2xl" 
-                    : "border-transparent opacity-40 hover:opacity-100 hover:border-white/10"
+                    ? "bg-white border-[#3F7373] shadow-2xl shadow-[#3F7373]/20" 
+                    : "bg-white/70 border-neutral-300 opacity-90 hover:opacity-100 hover:bg-white hover:border-[#3F7373]/50"
                 )}
               >
                 {activePlan.id === plan.id && (
                   <motion.div 
                     layoutId="active-pricing-bg"
-                    className="absolute inset-0 bg-gradient-to-r from-[#3F7373]/20 to-transparent pointer-events-none"
+                    className="absolute inset-0 bg-gradient-to-r from-[#3F7373]/5 to-transparent pointer-events-none"
                   />
                 )}
                 <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-5">
                     <div className={cn(
-                      "w-10 h-10 rounded-lg flex items-center justify-center border transition-all",
+                      "w-12 h-12 rounded-xl flex items-center justify-center border transition-all shadow-sm",
                       activePlan.id === plan.id 
-                        ? "bg-white text-black border-transparent" 
-                        : "bg-neutral-950 text-neutral-600 border-white/5"
+                        ? "bg-[#3F7373] border-[#3F7373]" 
+                        : "bg-white border-neutral-100"
                     )}>
-                      <plan.icon className="w-5 h-5" />
+                      <img 
+                        src={plan.iconUrl} 
+                        className={cn(
+                           "w-6 h-6 transition-all",
+                           activePlan.id === plan.id ? "invert brightness-200" : "brightness-0 opacity-60"
+                        )} 
+                        alt={plan.name} 
+                      />
                     </div>
                     <div>
-                      <p className="text-[10px] font-mono text-neutral-600 tracking-tighter mb-0.5">{plan.serial}</p>
+                      <p className="text-[10px] font-mono text-[#3F7373] font-black tracking-tighter mb-1 uppercase opacity-80">{plan.serial}</p>
                       <h3 className={cn(
-                        "text-lg font-bold tracking-tight uppercase",
-                        activePlan.id === plan.id ? "text-white" : "text-neutral-400"
+                        "text-xl font-black tracking-tight uppercase transition-all duration-300 group-hover:translate-x-1",
+                        activePlan.id === plan.id ? "text-[#1A1A1A]" : "text-neutral-900 group-hover:text-[#3F7373]"
                       )}>
                         {plan.name}
                       </h3>
                     </div>
                   </div>
                   {plan.highlighted && (
-                     <div className="px-2 py-1 rounded-sm bg-white/10 border border-white/10 text-[8px] font-black text-white/50 tracking-widest uppercase">
+                     <div className="px-3 py-1 rounded-full bg-[#3F7373]/10 border border-[#3F7373]/20 text-[9px] font-black text-[#3F7373] tracking-widest uppercase shadow-sm">
                         STABLE
                      </div>
                   )}
@@ -205,63 +217,71 @@ export function PricingSection() {
               </button>
             ))}
             
-            {/* Terminal Preview (Visual Decoration) */}
-            <div className="hidden lg:block p-6 rounded-2xl border border-white/5 bg-black/40 font-mono text-[10px] space-y-2 opacity-30">
-              <p className="text-[#3F7373] tracking-tighter">&gt; SYSOP CHECK: ALL SYSTEMS NOMINAL</p>
-              <p className="text-neutral-600 tracking-tighter">&gt; ALLOCATING SHARES... [OK]</p>
-              <p className="text-neutral-600 tracking-tighter">&gt; NODE CONNECTED: 0xF4...A2</p>
+            {/* Terminal Preview (Visual Decoration) - Light Theme */}
+            <div className="hidden lg:block p-8 rounded-[2rem] border border-[#3F7373]/5 bg-white shadow-sm font-mono text-[11px] space-y-3 opacity-40">
+              <p className="text-[#3F7373] font-bold">&gt; SYSOP CHECK: ALL SYSTEMS NOMINAL</p>
+              <p className="text-neutral-400">&gt; ALLOCATING SHARES... [OK]</p>
+              <p className="text-neutral-400">&gt; NODE CONNECTED: 0xF4...A2</p>
             </div>
           </div>
 
           {/* Right: Stage Display Area */}
-          <div className="lg:col-span-8 h-full">
+          <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activePlan.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
-                className="h-full bg-white/[0.02] border border-white/10 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-sm shadow-3xl flex flex-col"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="bg-white border border-[#3F7373]/10 rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-[0_40px_80px_-20px_rgba(63,115,115,0.12)]"
               >
-                {/* Visual Glow */}
-                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#3F7373]/10 blur-[100px] rounded-full pointer-events-none" />
-                
-                <div className="relative z-10 flex-1">
-                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+                {/* Visual Accent */}
+                <div 
+                  className="absolute top-0 right-0 w-80 h-80 blur-[100px] opacity-[0.15] pointer-events-none"
+                  style={{ background: activePlan.accent }}
+                />
+
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
                     <div>
-                      <h4 className="text-sm font-bold text-[#A8BDBF] tracking-[0.2em] uppercase mb-4">Module Details</h4>
-                      <h3 className="text-4xl md:text-6xl font-black text-white leading-[0.8] tracking-tighter uppercase mb-2">
+                      <h3 className="text-4xl md:text-6xl font-black text-[#1A1A1A] mb-4 tracking-tighter uppercase leading-none">
                         {activePlan.name}
                       </h3>
-                      <p className="text-neutral-500 font-sans font-medium text-lg italic">"{activePlan.description}"</p>
+                      <p className="text-lg text-neutral-900 font-sans font-medium italic">
+                        "{activePlan.description}"
+                      </p>
                     </div>
                     <div className="text-right">
-                       <div className="flex items-baseline justify-end gap-2">
-                          <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+                       <div className="flex items-baseline justify-end gap-3 [text-shadow:0_1px_2px_rgba(255,255,255,0.8)]">
+                          <span className={cn(
+                            "font-black text-[#1A1A1A] tracking-tighter transition-all duration-500",
+                            currentPrice(activePlan) === 'Custom' 
+                              ? "text-4xl md:text-6xl px-10 py-4 rounded-[2rem] bg-white/50 border border-[#3F7373]/20 shadow-inner backdrop-blur-sm" 
+                              : "text-5xl md:text-7xl leading-tight"
+                          )}>
                             {currentPrice(activePlan)}
                           </span>
                           {activePlan.monthlyPrice && (
-                            <span className="text-neutral-500 text-sm font-bold tracking-widest uppercase">
+                            <span className="text-[#1A1A1A] text-base font-black tracking-widest uppercase">
                               / {isAnnual ? 'YR' : 'MO'}
                             </span>
                           )}
                        </div>
                        {activePlan.monthlyPrice && isAnnual && (
-                         <p className="text-[10px] font-mono text-neutral-600 tracking-tighter mt-2">
+                         <p className="text-sm font-bold text-[#1A1A1A] tracking-wider mt-3 uppercase [text-shadow:0_1px_1px_rgba(255,255,255,0.5)]">
                             EST. ${Math.round(activePlan.annualPrice! / 12)} / MONTH BILLED ANNUALLY
                          </p>
                        )}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-14">
                     {activePlan.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-4 group">
-                        <div className="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-colors group-hover:border-[#3F7373]">
-                          <Check className="w-3 h-3 text-[#3F7373]" />
+                        <div className="w-6 h-6 rounded-lg bg-[#3F7373]/5 border border-[#3F7373]/10 flex items-center justify-center transition-all group-hover:bg-[#3F7373] group-hover:border-[#3F7373]">
+                          <Check className="w-3.5 h-3.5 text-[#3F7373] group-hover:text-[#F2F1F0]" />
                         </div>
-                        <span className="text-neutral-400 font-sans text-sm font-medium transition-colors group-hover:text-white">
+                        <span className="text-neutral-600 font-sans text-base font-semibold transition-colors group-hover:text-[#1A1A1A]">
                           {feature}
                         </span>
                       </div>
@@ -269,13 +289,13 @@ export function PricingSection() {
                   </div>
                 </div>
 
-                <div className="relative z-10 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#768C45] animate-pulse" />
-                    <p className="text-[10px] font-bold tracking-widest text-neutral-500 uppercase">14-Day Free Evaluation Access Available</p>
+                <div className="relative z-10 pt-10 border-t border-[#3F7373]/10 flex flex-col md:flex-row items-center justify-between gap-8">
+                  <div className="flex items-center gap-4">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#768C45] animate-pulse shadow-[0_0_10px_rgba(118,140,69,0.5)]" />
+                    <p className="text-[11px] font-black tracking-[0.2em] text-[#A8BDBF] uppercase">System Access: Trial Ready</p>
                   </div>
-                  <button className="mixed-gradient-glow w-full md:w-auto px-10 py-5 rounded-full text-white font-black tracking-widest text-xs hover:scale-105 transition-transform flex items-center justify-center gap-3">
-                    {activePlan.cta.toUpperCase()} <ArrowRight className="w-4 h-4" />
+                  <button className="bg-[#3F7373] hover:bg-[#3F7373]/90 w-full md:w-auto px-12 py-5 rounded-full text-[#F2F1F0] font-black tracking-widest text-xs hover:scale-105 transition-all shadow-2xl shadow-[#3F7373]/30 flex items-center justify-center gap-3">
+                    {activePlan.cta.toUpperCase()} <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
               </motion.div>
@@ -283,37 +303,37 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Industry Audit Log (Comparison) */}
+        {/* Industry Audit Log (Comparison) - Refined Light Table */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative"
+          className="relative mt-32"
         >
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-xl font-bold tracking-tight text-white uppercase">Industry Audit Log</h3>
-            <div className="h-px flex-1 bg-white/5" />
-            <Terminal className="w-5 h-5 text-neutral-700" />
+          <div className="flex items-center gap-6 mb-10">
+            <h3 className="text-3xl font-black tracking-tight text-[#1A1A1A] uppercase">Industry Audit Log</h3>
+            <div className="h-0.5 flex-1 bg-gradient-to-r from-[#3F7373]/20 via-[#3F7373]/5 to-transparent" />
+            <Terminal className="w-6 h-6 text-[#A8BDBF]" />
           </div>
 
-          <div className="bg-white/[0.01] border border-white/5 rounded-3xl overflow-hidden backdrop-blur-md">
+          <div className="bg-white border border-[#3F7373]/10 rounded-[3rem] overflow-hidden shadow-2xl shadow-[#3F7373]/5 backdrop-blur-md">
             <div className="overflow-x-auto custom-scrollbar">
               <table className="w-full text-left font-sans">
                 <thead>
-                  <tr className="border-b border-white/5 bg-white/[0.02]">
-                    <th className="px-8 py-6 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Feature set</th>
-                    <th className="px-8 py-6 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 text-center">Starter</th>
-                    <th className="px-8 py-6 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 text-center">Professional</th>
-                    <th className="px-8 py-6 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 text-center">Enterprise</th>
+                  <tr className="border-b border-[#3F7373]/10 bg-[#E5EFF1]/50">
+                    <th className="px-10 py-8 text-[11px] font-black tracking-[0.4em] uppercase text-[#A8BDBF]">Feature Set</th>
+                    <th className="px-10 py-8 text-[11px] font-black tracking-[0.4em] uppercase text-[#A8BDBF] text-center border-l border-[#3F7373]/5">Starter</th>
+                    <th className="px-10 py-8 text-[11px] font-black tracking-[0.4em] uppercase text-[#3F7373] text-center border-l border-[#3F7373]/5 bg-[#3F7373]/5">Professional</th>
+                    <th className="px-10 py-8 text-[11px] font-black tracking-[0.4em] uppercase text-[#A8BDBF] text-center border-l border-[#3F7373]/5">Enterprise</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 font-mono text-[11px]">
+                <tbody className="divide-y divide-[#3F7373]/5 font-sans">
                   {comparisonData.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-white/[0.02] transition-colors group">
-                      <td className="px-8 py-5 text-neutral-400 font-bold group-hover:text-white transition-colors">{row.feature.toUpperCase()}</td>
-                      <td className="px-8 py-5 text-center text-neutral-600">{row.starter}</td>
-                      <td className="px-8 py-5 text-center text-white">{row.pro}</td>
-                      <td className="px-8 py-5 text-center text-[#A8BDBF]">{row.ent}</td>
+                    <tr key={idx} className="hover:bg-[#E5EFF1]/30 transition-all duration-300 group">
+                      <td className="px-10 py-6 text-[#1A1A1A] font-black text-sm group-hover:translate-x-1 transition-transform">{row.feature.toUpperCase()}</td>
+                      <td className="px-10 py-6 text-center text-neutral-500 font-medium border-l border-[#3F7373]/5">{row.starter}</td>
+                      <td className="px-10 py-6 text-center text-[#3F7373] font-black border-l border-[#3F7373]/5 bg-[#3F7373]/5">{row.pro}</td>
+                      <td className="px-10 py-6 text-center text-neutral-600 font-bold border-l border-[#3F7373]/5">{row.ent}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -321,9 +341,9 @@ export function PricingSection() {
             </div>
           </div>
           
-          <div className="mt-8 flex items-center justify-center gap-4 text-[10px] font-bold tracking-widest text-neutral-700 uppercase">
-             <Info className="w-3 h-3" />
-             <span>All data packets are encrypted via high-level security protocols</span>
+          <div className="mt-10 flex items-center justify-center gap-4 text-[11px] font-black tracking-widest text-[#A8BDBF] uppercase">
+             <Shield className="w-4 h-4 text-[#768C45]" />
+             <span>All operational data is processed via end-to-end encrypted OptimeCore pipelines</span>
           </div>
         </motion.div>
       </div>

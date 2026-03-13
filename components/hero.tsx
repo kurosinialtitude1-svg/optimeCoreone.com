@@ -2,6 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 interface HeroSectionProps {
   className?: string;
@@ -52,20 +55,21 @@ export function HeroSection({ className }: HeroSectionProps) {
   }, []);
 
   return (
-    <section id="home" className={cn("relative w-full h-screen overflow-hidden bg-[#0a0a0a] flex items-center justify-center font-sans", className)}>
+    <section id="home" className={cn("relative w-full h-screen overflow-hidden dynamic-mesh-bg flex items-center justify-center font-sans", className)}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800;900&display=swap');
 
         :root {
           --bg: #000000;
-          --silver: #F2F1F0;
-          --accent: #3F7373;
+          --text: #F2F1F0;
+          --accent: #3F7373; /* Ming */
+          --accent-secondary: #768C45; /* Palm Leaf */
           --grain-opacity: 0.12;
         }
 
         .halide-container {
-          background-color: var(--bg);
-          color: var(--silver);
+          background-color: transparent;
+          color: var(--text);
           font-family: 'Cinzel', serif;
           width: 100%;
           height: 100%;
@@ -99,21 +103,22 @@ export function HeroSection({ className }: HeroSectionProps) {
         .layer {
           position: absolute;
           inset: 0;
-          border: 1px solid rgba(224, 224, 224, 0.1);
+          border: 1px solid rgba(63, 115, 115, 0.2);
           background-size: cover;
           background-position: center;
           transition: transform 0.5s ease;
+          border-radius: 2rem;
         }
 
-        .layer-1 { background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200'); filter: grayscale(1) contrast(1.2) brightness(0.5); }
-        .layer-2 { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200'); filter: grayscale(1) contrast(1.1) brightness(0.7); opacity: 0.6; mix-blend-mode: screen; }
-        .layer-3 { background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1200'); filter: grayscale(1) contrast(1.3) brightness(0.8); opacity: 0.4; mix-blend-mode: overlay; }
+        .layer-1 { background-image: url('/'); filter: brightness(1.05) contrast(1.05); }
+        .layer-2 { background-image: url('/'); filter: brightness(1.1) contrast(1.1); opacity: 0.3; mix-blend-mode: soft-light; }
+        .layer-3 { background-image: url('/'); filter: brightness(1.2) contrast(1.2); opacity: 0.2; mix-blend-mode: overlay; }
 
         .contours {
           position: absolute;
           width: 200%; height: 200%;
           top: -50%; left: -50%;
-          background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 40px, rgba(255,255,255,0.05) 41px, transparent 42px);
+          background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 40px, rgba(63,115,115,0.05) 41px, transparent 42px);
           transform: translateZ(120px);
           pointer-events: none;
         }
@@ -135,39 +140,71 @@ export function HeroSection({ className }: HeroSectionProps) {
           font-size: clamp(3rem, 10vw, 10rem);
           line-height: 0.85;
           letter-spacing: -0.04em;
-          mix-blend-mode: difference;
-          font-weight: 800;
+          mix-blend-mode: normal;
+          font-weight: 900;
+          color: var(--text);
+          text-shadow: 0 10px 30px rgba(63,115,115,0.1);
         }
 
         .cta-button {
           pointer-events: auto;
-          background: linear-gradient(135deg, #3F7373 0%, #768C45 100%);
-          color: white;
-          padding: 1rem 2.5rem;
+          background: var(--accent);
+          color: #F2F1F0;
+          padding: 1.25rem 3rem;
           text-decoration: none;
-          font-weight: 700;
+          font-weight: 900;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
           clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
-          transition: 0.3s;
+          transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           display: inline-block;
-          box-shadow: 0 0 20px rgba(63, 115, 115, 0.4);
+          box-shadow: 0 20px 40px rgba(63, 115, 115, 0.2);
+          font-size: 0.75rem;
         }
 
-        .cta-button:hover { brightness: 1.1; transform: translateY(-5px); }
+        .cta-button:hover { 
+          background: var(--accent-secondary); 
+          transform: translateY(-5px) scale(1.05); 
+          box-shadow: 0 30px 60px rgba(118, 140, 69, 0.25);
+        }
 
-        .scroll-hint {
+        .hero-backdrop {
           position: absolute;
-          bottom: 2rem; left: 50%;
-          width: 1px; height: 60px;
-          background: linear-gradient(to bottom, var(--silver), transparent);
-          animation: flow 2s infinite ease-in-out;
+          inset: 0;
+          background-image: url('/We Architect The Future.svg');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          opacity: 0.08;
+          filter: blur(2px) saturate(0.8);
+          z-index: 0;
         }
 
-        @keyframes flow {
-          0%, 100% { transform: scaleY(0); transform-origin: top; }
-          50% { transform: scaleY(1); transform-origin: top; }
-          51% { transform: scaleY(1); transform-origin: bottom; }
+        .hero-vignette {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+          z-index: 1;
+          pointer-events: none;
         }
       `}</style>
+
+      <div className="hero-backdrop" />
+      <div className="hero-vignette" />
+
+      {/* Hero Section Foreground Image */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: "url('/herosectionbg.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.55,
+        zIndex: 2,
+        pointerEvents: 'none',
+        mixBlendMode: 'luminosity',
+      }} />
 
       <div className="halide-container">
         {/* SVG Filter for Grain */}
@@ -181,36 +218,78 @@ export function HeroSection({ className }: HeroSectionProps) {
         <div className="halide-grain" style={{ filter: 'url(#grain)' }}></div>
 
         <div className="interface-grid">
-          <div className="font-bold flex items-center gap-2">
-            <img src="/logo.png" alt="Halide Core Logo" className="w-32 h-32 rounded-lg shadow-lg border border-white/10" />
-            <span className="tracking-tighter uppercase text-sm"></span>
+          <div className="font-black flex items-center gap-3">
+            <div className="w-10 h-10 bg-[#3F7373] rounded-xl flex items-center justify-center shadow-lg shadow-[#3F7373]/20">
+              <span className="text-[#F2F1F0] font-bold text-xl">O</span>
+            </div>
+            <span className="tracking-widest uppercase text-xs font-black text-[#3F7373]">OPTIMECORE</span>
           </div>
-          <div className="text-right font-mono text-xs" style={{ color: 'var(--accent)' }}>
-            <div>SYS: PRODUCTION.MONITOR</div>
-            <div>GPU-ACCELERATED: ACTIVE</div>
+          <div className="text-right font-mono text-[10px] space-y-1" style={{ color: 'var(--accent)' }}>
+            <div className="opacity-60">SYSTEM STATUS: OPTIMAL</div>
+            <div className="font-bold">INTELLIGENCE OVERLAY: ACTIVE</div>
           </div>
 
-          <h1 className="hero-title">OPTIME<br />CORE</h1>
+          <h1 className="hero-title">
+            <span style={{ color: '#000000' }}>Optimize Your</span><br />
+            <span style={{ color: '#000000' }}>Factory with</span>
+            {' '}
+            <span className="text-transparent bg-clip-text inline-flex"
+              style={{ backgroundImage: 'linear-gradient(90deg, #A8BDBF, #3F7373, #768C45, #C5D7D9, #3F7373)' }}>
+              {"OptiCoreX".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.2,
+                    delay: 2 + index * 0.1,
+                    ease: "easeOut"
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          </h1>
 
           <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <div className="font-mono text-xs">
-              <p>[ GPU-ACCELERATED FACTORY AI ]</p>
-              <p>PRODUCTION OPTIMIZATION · MACHINE INTELLIGENCE</p>
+            <div className="font-mono text-[10px] tracking-tight text-neutral-400 max-w-xs leading-relaxed">
+              <p className="font-black text-[#3F7373] mb-1">[ OPTICOREX ]</p>
+              <p>Smarter machines, smoother operations, better results.</p>
             </div>
-            <a href="#features" className="cta-button">ENTER COMMAND CENTER</a>
+            <a href="#features" className="cta-button industrial-pulse">Initialize Platform</a>
           </div>
         </div>
 
         <div className="viewport">
           <div className="canvas-3d" ref={canvasRef}>
-            <div className="layer layer-1" ref={(el) => (layersRef.current[0] = el!)}></div>
-            <div className="layer layer-2" ref={(el) => (layersRef.current[1] = el!)}></div>
-            <div className="layer layer-3" ref={(el) => (layersRef.current[2] = el!)}></div>
+            <div className="layer layer-1" ref={(el: any) => { layersRef.current[0] = el!; }}></div>
+            <div className="layer layer-2" ref={(el: any) => { layersRef.current[1] = el!; }}></div>
+            <div className="layer layer-3" ref={(el: any) => { layersRef.current[2] = el!; }}></div>
             <div className="contours"></div>
           </div>
         </div>
 
-        <div className="scroll-hint"></div>
+        <Link 
+          href="#features"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 group cursor-pointer"
+        >
+          <motion.span 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3, duration: 1 }}
+            className="text-[10px] font-black tracking-[0.4em] uppercase text-[#3F7373] opacity-60 group-hover:opacity-100 transition-opacity"
+          >
+            Explore Intelligence
+          </motion.span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-10 h-10 rounded-full border border-[#3F7373]/20 flex items-center justify-center bg-white/10 backdrop-blur-sm group-hover:border-[#3F7373]/50 transition-colors"
+          >
+            <ChevronDown className="w-5 h-5 text-[#3F7373]" />
+          </motion.div>
+        </Link>
       </div>
     </section>
   );
