@@ -47,7 +47,7 @@ export function FeatureSteps({
     <div className={cn("p-8 md:p-12", className)}>
       <div className="max-w-7xl mx-auto w-full">
         {title && (
-          <h2 className="text-3xl md:text-5xl font-black mb-16 text-center font-['Cinzel'] text-[#1A1A1A] uppercase tracking-tighter">
+          <h2 className="text-3xl md:text-5xl font-black mb-16 text-center font-['Syncopate'] text-[#1A1A1A] uppercase tracking-tighter">
             {title}
           </h2>
         )}
@@ -72,9 +72,9 @@ export function FeatureSteps({
                 <div className="relative">
                   <motion.div
                     className={cn(
-                      "w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border-2 transition-all duration-500 shadow-sm relative overflow-hidden",
+                      "w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border transition-all duration-500 relative overflow-hidden",
                       index === currentFeature
-                        ? "bg-[#3F7373] border-[#3F7373] text-[#F2F1F0] scale-110 shadow-lg shadow-[#3F7373]/20"
+                        ? "bg-[#3F7373] border-[#3F7373] text-white scale-110 shadow-[0_10px_20px_rgba(63,115,115,0.1)]"
                         : "bg-white border-[#3F7373]/10 text-[#3F7373] group-hover:border-[#3F7373]/30",
                     )}
                     style={{
@@ -95,9 +95,9 @@ export function FeatureSteps({
                     )}
                   </motion.div>
                   
-                  {/* Progress Ring / Bar for active step */}
+                  {/* Progress Line for active step */}
                   {index === currentFeature && (
-                    <div className="absolute -bottom-2 left-0 right-0 h-1 bg-[#3F7373]/10 rounded-full overflow-hidden">
+                    <div className="absolute -bottom-2 left-0 right-0 h-[3px] bg-[#3F7373]/5 rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
@@ -109,14 +109,14 @@ export function FeatureSteps({
 
                 <div className="flex-1 pt-1">
                   <h3 className={cn(
-                    "text-xl md:text-2xl font-black tracking-tight mb-2 transition-colors duration-300",
+                    "text-xl md:text-2xl font-black tracking-tight mb-2 transition-colors duration-300 font-['Syncopate'] uppercase text-xs",
                     index === currentFeature ? "text-[#1A1A1A]" : "text-neutral-400"
                   )}>
                     {feature.title || feature.step}
                   </h3>
                   <p className={cn(
                     "text-sm md:text-base font-sans font-medium leading-relaxed transition-colors duration-300",
-                    index === currentFeature ? "text-neutral-600" : "text-neutral-400"
+                    index === currentFeature ? "text-[#1A1A1A]/70" : "text-neutral-400"
                   )}>
                     {feature.content}
                   </p>
@@ -127,15 +127,15 @@ export function FeatureSteps({
 
           <div
             className={cn(
-              "order-1 md:order-2 relative h-[300px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-[3rem] border border-[#3F7373]/10 shadow-2xl bg-[#F2F1F0] p-4"
+              "order-1 md:order-2 relative h-[300px] md:h-[450px] lg:h-[600px] overflow-hidden rounded-[3rem] border border-[#3F7373]/10 shadow-2xl bg-[#F2F1F0] p-4"
             )}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C5D7D9]/20 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3F7373]/5 to-transparent opacity-50" />
             
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentFeature}
-                className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-inner flex items-center justify-center bg-white"
+                className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-inner flex items-center justify-center bg-white border-[3px] border-double border-[#3F7373]/20"
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 1.05, y: -20 }}
@@ -144,7 +144,7 @@ export function FeatureSteps({
                 <Image
                   src={features[currentFeature].image}
                   alt={features[currentFeature].step}
-                  className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
                   width={1200}
                   height={800}
                   priority
@@ -156,25 +156,25 @@ export function FeatureSteps({
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 1px, #1A1A1A 2px)' }} />
                   
                   {/* Corner Brackets */}
-                  <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#3F7373] rounded-tl-xl" />
-                  <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#3F7373] rounded-tr-xl" />
-                  <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#3F7373] rounded-bl-xl" />
-                  <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#3F7373] rounded-br-xl" />
+                  <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#3F7373]/50 rounded-tl-xl" />
+                  <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#3F7373]/50 rounded-tr-xl" />
+                  <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#3F7373]/50 rounded-bl-xl" />
+                  <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#3F7373]/50 rounded-br-xl" />
                   
                   {/* Status Indicator */}
-                  <div className="absolute top-8 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#3F7373] text-[#F2F1F0] text-[8px] font-black tracking-[0.3em] uppercase rounded-full flex items-center gap-2">
+                  <div className="absolute top-8 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#3F7373] text-white text-[8px] font-bold tracking-[0.3em] uppercase rounded-full flex items-center gap-2 shadow-lg">
                     <div className="w-1 h-1 rounded-full bg-[#768C45] animate-ping" />
-                    Live Optimization Stream
+                    LIVE_SYNTHESIS_STREAM
                   </div>
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6 p-6 glass-panel border-white/40 shadow-2xl z-30">
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/70 backdrop-blur-xl border border-[#3F7373]/10 rounded-2xl shadow-xl z-30">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#768C45] animate-pulse shadow-[0_0_8px_rgba(118,140,69,0.4)]" />
-                    <span className="text-[10px] font-black tracking-widest text-[#3F7373] uppercase">Machine Intelligence Overlay</span>
+                    <div className="w-2 h-2 rounded-full bg-[#3F7373] animate-pulse shadow-[0_0_8px_rgba(63,115,115,0.3)]" />
+                    <span className="text-[9px] font-bold tracking-widest text-[#3F7373] uppercase font-['Syncopate']">Intelligence_Overlay</span>
                   </div>
-                  <p className="text-[#1A1A1A] text-[11px] font-bold font-mono tracking-tight">
-                    ANALYZING PRODUCTION NODE: 0x{features[currentFeature].step.toUpperCase().replace(' ', '_')}
+                  <p className="text-[#1A1A1A] text-[10px] font-bold font-mono tracking-tight opacity-80">
+                    ANALYZING_NODE: 0x{features[currentFeature].step.toUpperCase().replace(' ', '_')}
                   </p>
                 </div>
               </motion.div>

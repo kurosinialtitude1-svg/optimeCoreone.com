@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cinzel, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { CookieConsent } from '@/components/cookie-consent'
 import './globals.css'
 
 const cinzel = Cinzel({ 
@@ -55,6 +56,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
+        <CookieConsent />
         {children}
         <Analytics />
       </body>

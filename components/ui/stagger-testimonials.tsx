@@ -77,63 +77,60 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out font-['Cinzel'] rounded-2xl",
+        "absolute left-1/2 top-1/2 cursor-pointer border-[2px] border-[#528081]/30 p-10 transition-all duration-700 ease-[0.16,1,0.3,1] font-['Syncopate'] rounded-[2.5rem]",
         isCenter 
-          ? "z-10 bg-[#3F7373] text-[#F2F1FO] border-[#3F7373] shadow-[0_30px_60px_-15px_rgba(63,115,115,0.4)]" 
-          : "z-0 bg-white/60 backdrop-blur-md text-[#3F7373] border-neutral-200 hover:border-[#3F7373]/40"
+          ? "z-20 bg-[#528081] text-white border-white/20 shadow-[0_40px_80px_-15px_rgba(82,128,129,0.3)] scale-105" 
+          : "z-10 bg-white/60 backdrop-blur-2xl text-[#528081] border-[#528081]/10 hover:border-[#528081]/30 opacity-60 hover:opacity-100"
       )}
       style={{
         width: cardSize,
         height: cardSize,
-        clipPath: `polygon(50px 0%, calc(100% - 30px) 0%, 100% 30px, 100% 100%, calc(100% - 0px) 100%, 0px 100%, 0 100%, 0 0)`,
+        clipPath: `polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)`,
         transform: `
           translate(-50%, -50%) 
-          translateX(${(cardSize / 1.5) * position}px)
-          translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
-          rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
-          scale(${isCenter ? 1 : 0.9})
+          translateX(${(cardSize / 1.4) * position}px)
+          translateY(${isCenter ? -70 : position % 2 ? 0 : 0}px)
+          rotate(${isCenter ? 0 : position * 2}deg)
+          scale(${isCenter ? 1.05 : 0.85})
         `,
       }}
     >
-      <span
-        className="absolute block origin-top-right rotate-45 bg-[#A8BDBF]/30"
-        style={{
-          right: -2,
-          top: 28,
-          width: 42,
-          height: 2
-        }}
-      />
-      
-      <div className="relative mb-6">
+      <div className="absolute top-8 left-10 flex items-center gap-2">
+         <div className={cn("w-1 h-1 rounded-full", isCenter ? "bg-white animate-pulse" : "bg-[#528081]/40")} />
+         <span className={cn("text-[7px] font-bold tracking-[0.4em] uppercase opacity-60", isCenter ? "text-white" : "text-[#528081]")}>
+           FEEDBACK_STREAM_v2
+         </span>
+      </div>
+
+      <div className="relative mt-4 mb-8">
         <Quote className={cn(
-          "absolute -top-4 -left-4 w-12 h-12 opacity-10",
-          isCenter ? "text-white" : "text-[#3F7373]"
+          "absolute -top-6 -left-6 w-16 h-16 opacity-10",
+          isCenter ? "text-white" : "text-[#528081]"
         )} />
-        <img
-          src={testimonial.imgSrc}
-          alt={`${testimonial.by.split(',')[0]}`}
-          className="relative z-10 h-16 w-16 grayscale hover:grayscale-0 transition-all duration-300 border-2 border-[#768C45]/30 object-cover rounded-xl"
-          style={{
-            boxShadow: "4px 4px 0px rgba(118, 140, 69, 0.4)"
-          }}
-        />
+        <div className="relative">
+            <div className="absolute inset-0 bg-[#768C45]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <img
+              src={testimonial.imgSrc}
+              alt={`${testimonial.by.split(',')[0]}`}
+              className="relative z-10 h-16 w-16 grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/20 object-cover rounded-2xl shadow-xl"
+            />
+        </div>
       </div>
 
       <h3 className={cn(
-        "text-lg sm:text-l font-bold leading-tight mb-4",
+        "text-lg sm:text-xl font-bold leading-tight mb-8 tracking-tight",
         isCenter ? "text-white" : "text-[#1A1A1A]"
       )}>
         "{testimonial.testimonial}"
       </h3>
       
       <div className={cn(
-        "absolute bottom-8 left-8 right-8",
-        isCenter ? "text-white/80" : "text-[#3F7373]/70"
+        "absolute bottom-10 left-10 right-10",
+        isCenter ? "text-white/80" : "text-[#528081]/70"
       )}>
-         <div className="w-12 h-0.5 bg-[#768C45] mb-2" />
-         <p className="text-xs tracking-widest font-black uppercase italic">
-          {testimonial.by}
+         <div className={cn("w-10 h-0.5 mb-4", isCenter ? "bg-white/40" : "bg-[#528081]/30")} />
+         <p className="text-[9px] tracking-[0.2em] font-bold uppercase">
+           {testimonial.by}
         </p>
       </div>
     </div>
@@ -179,9 +176,9 @@ export const StaggerTestimonials: React.FC = () => {
       style={{ height: 650 }}
     >
       {/* Background Decorative Text */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.03]">
-        <h1 className="text-[20vw] font-black text-[#3F7373] whitespace-nowrap tracking-tighter uppercase font-['Cinzel']">
-          TESTIMONIALS
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.03]">
+        <h1 className="text-[18vw] font-bold text-[#528081] whitespace-nowrap tracking-tighter uppercase font-['Syncopate']">
+          VALIDATION
         </h1>
       </div>
 
@@ -200,28 +197,28 @@ export const StaggerTestimonials: React.FC = () => {
         );
       })}
       
-      <div className="absolute bottom-12 left-1/2 flex -translate-x-1/2 gap-6">
+      <div className="absolute bottom-16 left-1/2 flex -translate-x-1/2 gap-8">
         <button
           onClick={() => handleMove(-1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center transition-all duration-300",
-            "bg-white/80 backdrop-blur-md border border-[#3F7373]/20 text-[#3F7373] hover:bg-[#3F7373] hover:text-white hover:border-[#3F7373]",
-            "rounded-full shadow-2xl shadow-[#3F7373]/20"
+            "flex h-16 w-16 items-center justify-center transition-all duration-500 transform hover:scale-110 active:scale-95",
+            "bg-white/40 backdrop-blur-3xl border border-[#528081]/20 text-[#528081] hover:bg-[#528081] hover:text-white hover:border-[#528081]",
+            "rounded-2xl shadow-xl shadow-[#528081]/10"
           )}
           aria-label="Previous testimonial"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-7 h-7" />
         </button>
         <button
           onClick={() => handleMove(1)}
           className={cn(
-            "flex h-14 w-14 items-center justify-center transition-all duration-300",
-            "bg-white/80 backdrop-blur-md border border-[#3F7373]/20 text-[#3F7373] hover:bg-[#3F7373] hover:text-white hover:border-[#3F7373]",
-            "rounded-full shadow-2xl shadow-[#3F7373]/20"
+            "flex h-16 w-16 items-center justify-center transition-all duration-500 transform hover:scale-110 active:scale-95",
+            "bg-white/40 backdrop-blur-3xl border border-[#528081]/20 text-[#528081] hover:bg-[#528081] hover:text-white hover:border-[#528081]",
+            "rounded-2xl shadow-xl shadow-[#528081]/10"
           )}
           aria-label="Next testimonial"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-7 h-7" />
         </button>
       </div>
     </div>

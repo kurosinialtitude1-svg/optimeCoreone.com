@@ -25,21 +25,21 @@ export function CTAFooterSection() {
   return (
     <>
       {/* ── Final CTA Section (Refined Light Theme) ── */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#F2F1F0] overflow-hidden font-['Cinzel']">
+      <section className="relative min-h-[70vh] md:min-h-[90vh] flex items-center justify-center bg-[#E3EFF0] overflow-hidden font-['Syncopate']">
         {/* Industrial Background Image - High Visibility */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/footer-bg.png" 
             alt="Industrial Background" 
-            className="w-full h-full object-cover opacity-60 scale-105"
+            className="w-full h-full object-cover opacity-30 scale-105 grayscale"
           />
           {/* Subtle Light Gradients for Depth & Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F2F1F0]/90 via-transparent to-[#F2F1F0]/90" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(63,115,115,0.1)_0%,_transparent_70%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#E3EFF0] via-transparent to-[#E3EFF0]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(82,128,129,0.1)_0%,_transparent_70%)]" />
         </div>
 
-        {/* Floating Orbs Container */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        {/* Floating Orbs Container — hidden on mobile to prevent overlap */}
+        <div className="absolute inset-0 z-10 pointer-events-none hidden md:block">
           {orbs.map((orb, i) => (
             <motion.div
               key={i}
@@ -65,25 +65,25 @@ export function CTAFooterSection() {
               }}
             >
               {orb.type === 'stat' && (
-                <div className="flex flex-col items-center gap-1 bg-white/80 backdrop-blur-xl border border-white p-4 rounded-3xl shadow-[0_20px_40px_-15px_rgba(63,115,115,0.15)]">
-                  {orb.icon && <orb.icon className="w-4 h-4" style={{ color: orb.color }} />}
-                  <span className="text-[10px] font-bold text-[#1A1A1A] tracking-tighter uppercase whitespace-nowrap">{orb.label}</span>
+                <div className="flex flex-col items-center gap-2 bg-white/40 backdrop-blur-3xl border border-[#528081]/20 p-5 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(82,128,129,0.1)] group transition-all hover:border-[#528081]/40">
+                  {orb.icon && <orb.icon className="w-5 h-5 transition-transform group-hover:scale-110" style={{ color: '#528081' }} />}
+                  <span className="text-[8px] font-bold text-[#1A1A1A] tracking-[0.2em] uppercase whitespace-nowrap">{orb.label.replace(' ', '_')}</span>
                 </div>
               )}
               {orb.type === 'portrait' && (
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#3F7373] to-[#768C45] rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
+                <div className="relative group p-1 border border-[#528081]/20 rounded-full">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#528081] to-[#768C45] rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
                   <img
                     src={orb.img}
-                    className="relative rounded-full border-4 border-white shadow-2xl hover:scale-110 transition-all duration-500 cursor-pointer object-cover"
+                    className="relative rounded-full border-2 border-white shadow-2xl hover:scale-110 transition-all duration-500 cursor-pointer object-cover grayscale group-hover:grayscale-0"
                     style={{ width: orb.size, height: orb.size }}
                     alt="User"
                   />
                 </div>
               )}
               {orb.type === 'icon' && (
-                <div className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-xl border border-white rounded-2xl shadow-lg">
-                  {orb.icon && <orb.icon className="w-5 h-5" style={{ color: orb.color }} />}
+                <div className="w-14 h-14 flex items-center justify-center bg-white/40 backdrop-blur-3xl border border-[#528081]/20 rounded-2xl shadow-lg transition-all hover:bg-[#528081] group">
+                  {orb.icon && <orb.icon className="w-6 h-6 transition-colors group-hover:text-white" style={{ color: '#528081' }} />}
                 </div>
               )}
             </motion.div>
@@ -96,57 +96,88 @@ export function CTAFooterSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-[#3F7373]/20 text-[11px] font-black tracking-[0.5em] uppercase mb-10 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#528081]/10 border border-[#528081]/20 text-[8px] font-bold tracking-[0.4em] uppercase mb-12 shadow-sm"
           >
-            <div className="w-2 h-2 rounded-full bg-[#768C45] animate-pulse shadow-[0_0_10px_#768C45]" />
-            <span className="text-[#3F7373]">System Online — Accepting Enrollments</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#768C45] animate-ping" />
+            <span className="text-[#528081]">SYSTEM_CORE_LIVE — ENROLLMENT_ACTIVE</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-12 drop-shadow-sm"
-          >
-            <span className="text-[#1A1A1A]">Optimize</span>
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3F7373] via-[#768C45] to-[#3F7373]">
-              Your Factory
-            </span>
-            <br />
-            <span className="text-[#3F7373]">Today.</span>
-          </motion.h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter leading-[0.85] mb-14 overflow-hidden">
+             {"OPTIMIZE".split("").map((char, i) => (
+                <motion.span
+                  key={`opt-${i}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.04 }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+             ))}
+             <br />
+             <span className="text-[#528081]">{"YOUR FACTORY".split("").map((char, i) => (
+                <motion.span
+                  key={`fact-${i}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 + (i * 0.04) }}
+                  className="inline-block"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+             ))}</span>
+             <br />
+             {"TODAY.".split("").map((char, i) => (
+                <motion.span
+                  key={`today-${i}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.6 + (i * 0.04) }}
+                  className="inline-block text-[#1A1A1A]/40"
+                >
+                  {char}
+                </motion.span>
+             ))}
+          </h2>
+
+          <div className="flex justify-center mb-14">
+             <div className="h-[2px] w-32 bg-gradient-to-r from-transparent via-[#528081] to-transparent opacity-30" />
+          </div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-neutral-600 text-xl max-w-2xl mx-auto mb-16 font-sans font-medium italic leading-relaxed"
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto mb-16 font-sans font-medium italic leading-relaxed"
           >
-            "Experience OptiCoreX — monitor workflows, optimize machines, and streamline maintenance. Get started with your 14-day free trial now!"
+            "Experience OptiCoreX — monitor workflows, optimize machines, and accelerate maintenance. Initialize your 14-day operational feasibility trial."
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="flex flex-col items-center gap-8"
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col items-center gap-10"
           >
-            <div className="flex flex-col sm:flex-row gap-0 justify-center w-full max-w-xl overflow-hidden rounded-full border border-[#3F7373]/20 bg-white/90 backdrop-blur-lg shadow-[0_30px_60px_-15px_rgba(63,115,115,0.2)] p-1.5 transition-all focus-within:ring-2 ring-[#3F7373]/20">
+            <div className="flex flex-col sm:flex-row gap-0 justify-center w-full max-w-2xl overflow-hidden rounded-[2rem] border border-[#528081]/30 bg-white/40 backdrop-blur-3xl shadow-[0_40px_80px_-20px_rgba(82,128,129,0.2)] p-2 transition-all focus-within:ring-4 ring-[#528081]/10">
               <input
                 type="email"
-                placeholder="Enter your factory email..."
-                className="flex-1 px-8 py-5 bg-transparent text-[#1A1A1A] placeholder:text-neutral-400 focus:outline-none text-base font-sans"
+                placeholder="FACTORY_EMAIL_ADDRESS..."
+                className="flex-1 px-5 md:px-10 py-4 md:py-6 bg-transparent text-[#1A1A1A] placeholder:text-[#528081]/40 focus:outline-none text-sm md:text-base font-sans font-bold uppercase tracking-tight"
               />
-              <button className="px-10 py-5 bg-[#3F7373] hover:bg-[#3F7373]/90 rounded-full text-white text-sm font-black tracking-widest uppercase whitespace-nowrap flex items-center gap-3 justify-center hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-[#3F7373]/30">
-                Start Trial <ArrowRight className="w-5 h-5" />
+              <button className="group relative px-6 md:px-14 py-4 md:py-6 bg-[#528081] rounded-2xl text-white text-[11px] font-bold tracking-[0.3em] uppercase whitespace-nowrap flex items-center gap-3 md:gap-4 justify-center hover:scale-[1.05] active:scale-[0.95] transition-all shadow-xl shadow-[#528081]/30 overflow-hidden w-full md:w-auto">
+                <span className="relative z-10">INITIALIZE_TRIAL</span> 
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-[#768C45] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </button>
             </div>
-            <a href="#how-it-works" className="text-[11px] font-black tracking-[0.4em] uppercase text-neutral-400 hover:text-[#3F7373] transition-all border-b border-transparent hover:border-[#3F7373]/40 pb-1.5 mb-10">
-              How it works
+            <a href="#how-it-works" className="text-[9px] font-bold tracking-[0.5em] uppercase text-neutral-400 hover:text-[#528081] transition-all border-b-2 border-transparent hover:border-[#528081]/30 pb-2 mb-10">
+              EXPLORE_PROTOCOL_ARCHITECTURE
             </a>
           </motion.div>
         </div>
